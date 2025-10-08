@@ -16,7 +16,15 @@ class Product(models.Model):
     description=models.TextField()
     quantity=models.PositiveIntegerField(default=0)
     image=models.ImageField(upload_to="products/",null=True,blank=True)
+    discount_price= models.DecimalField(decimal_places=2, max_digits=10, null=True, blank=True)
 
     def __str__(self):
         return self.name
+    
+    def save(self, *args, **kwargs):
+
+        if self.discount>0:
+            self.discount_price = self.price - self.price*self.discount/100
+
+        super().save(*args, **kwargs)
     

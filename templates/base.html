@@ -25,7 +25,8 @@
   <body>
     <!--=============== HEADER ===============-->
     <header class="header">
-      <div class="header__top">
+      {% if not request.user.is_authenticated %}
+         <div class="header__top">
         <div class="header__container container">
           <div class="header__contact">
             <span>(+01) - 2345 - 6789</span>
@@ -46,6 +47,7 @@
           {% endif %}
         </div>
       </div>
+      {% endif %}
 
       <nav class="nav container">
         <a href="index.html" class="nav__logo">
@@ -66,19 +68,16 @@
           </div>
           <ul class="nav__list">
             <li class="nav__item">
-              <a href="index.html" class="nav__link active-link">Home</a>
+              <a href="{% url 'dashboard' %}" class="nav__link {% if request.path == '/' %}active-link{% endif %}">Home</a>
             </li>
             <li class="nav__item">
-              <a href="shop.html" class="nav__link">Shop</a>
+              <a href="shop.html" class="nav__link {% if request.path == '/shop/' %}active-link{% endif %}">Shop</a>
             </li>
             <li class="nav__item">
-              <a href="accounts.html" class="nav__link">My Account</a>
+              <a href="{% url 'profile_user' %}" class="nav__link {% if request.path == '/profile/' %}active-link{% endif %}">Profilim</a>
             </li>
             <li class="nav__item">
-              <a href="compare.html" class="nav__link">Compare</a>
-            </li>
-            <li class="nav__item">
-              <a href="login-register.html" class="nav__link">Login</a>
+              <a href="{% url 'logout_user' %}" class="nav__link">Log Out</a>
             </li>
           </ul>
           <div class="header__search">

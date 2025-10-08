@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from shop.models import Category, Product
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 def dashboard(request):
     categories = Category.objects.all()
@@ -13,6 +14,10 @@ def dashboard(request):
 
 def detail(request):
     return render(request, 'shop/detail.html')
+
+@login_required
+def profile_user(request):
+    return render(request, 'shop/accounts.html')
 
 def login_user(request):
     if request.method == "POST":
