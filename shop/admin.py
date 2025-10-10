@@ -7,6 +7,6 @@ class ProductAdmin(admin.ModelAdmin):
     model = Product
     exclude = ('discount_price', )
     list_display = ('name', 'price')
-    search_fields = ('name')
+    search_fields = ('name', )
 
-admin.site.register([ProductAdmin])
+admin.site.register(Product, ProductAdmin)
