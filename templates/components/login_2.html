@@ -3,19 +3,10 @@
           <div class="login">
             <h3 class="section__title">Login</h3>
             <form class="form grid" method='POST'>
-                {% csrf_token %}
-              <input 
-                type="text"
-                placeholder="Your Username"
-                class="form__input"
-                name="username"
-              />
-              <input
-                type="password"
-                placeholder="Your Password"
-                class="form__input"
-                name="password"
-              />
+              
+              {% csrf_token %}
+              {{form}}
+
               <div class="form__btn">
                 <button class="btn" type="submit">Login</button>
               </div>

@@ -44,7 +44,7 @@
                       <i class="fi fi-rs-shuffle"></i>
                     </a>
                   </div>
-                  <div class="product__badge light-pink">{{product.brand}}</div>
+                  <div class="product__badge light-pink">%{{product.discount}}</div>
                 </div>
                 <div class="product__content">
                   <span class="product__category">{{product.category}}</span>
@@ -59,8 +59,8 @@
                     <i class="fi fi-rs-star"></i>
                   </div>
                   <div class="product__price flex">
-                    <span class="new__price">{{product.discount_price}}</span>
-                    <span class="old__price">{{product.price}}</span>
+                    <span class="new__price">${{product.discount_price}}</span>
+                    <span class="old__price">${{product.price}}</span>
                   </div>
                   <a
                     href="#"

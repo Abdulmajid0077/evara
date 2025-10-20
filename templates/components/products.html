@@ -1,20 +1,17 @@
-{% load static %}
-
-    <section class="products container section--lg">
-        <h3 class="section__title"><span>Related</span> Products</h3>
+ {% load static %}
+ 
+ <section class="products container section--lg">
+        <p class="total__products">Siz uchun <span>688</span> ta mahsulot topdik!</p>
+        
         <div class="products__container grid">
+          {% for product in products %}
           <div class="product__item">
             <div class="product__banner">
               <a href="details.html" class="product__images">
                 <img
-                  src="{% static 'assets/img/product-1-1.jpg' %}"
+                  src="{{product.image.url}}"
                   alt=""
                   class="product__img default"
-                />
-                <img
-                  src="{% static 'assets/img/product-1-2.jpg' %}"
-                  alt=""
-                  class="product__img hover"
                 />
               </a>
               <div class="product__actions">
@@ -32,12 +29,12 @@
                   <i class="fi fi-rs-shuffle"></i>
                 </a>
               </div>
-              <div class="product__badge light-pink">Hot</div>
+              <div class="product__badge light-green">-{{product.discount}}%</div>
             </div>
             <div class="product__content">
-              <span class="product__category">Clothing</span>
+              <span class="product__category">{{product.category}}</span>
               <a href="details.html">
-                <h3 class="product__title">Colorful Pattern Shirts</h3>
+                <h3 class="product__title">{{product.name}}</h3>
               </a>
               <div class="product__rating">
                 <i class="fi fi-rs-star"></i>
@@ -47,185 +44,82 @@
                 <i class="fi fi-rs-star"></i>
               </div>
               <div class="product__price flex">
-                <span class="new__price">$238.85</span>
-                <span class="old__price">$245.8</span>
+                <span class="new__price">${{product.discount_price}}</span>
+                <span class="old__price">${{product.price}}</span>
               </div>
               <a
                 href="#"
                 class="action__btn cart__btn"
                 aria-label="Add To Cart"
+                data-product-id="{{product.id}}"
               >
                 <i class="fi fi-rs-shopping-bag-add"></i>
               </a>
             </div>
           </div>
-          <div class="product__item">
-            <div class="product__banner">
-              <a href="details.html" class="product__images">
-                <img
-                  src="{% static 'assets/img/product-2-1.jpg' %}"
-                  alt=""
-                  class="product__img default"
-                />
-                <img
-                  src="{% static 'assets/img/product-2-2.jpg' %}"
-                  alt=""
-                  class="product__img hover"
-                />
-              </a>
-              <div class="product__actions">
-                <a href="#" class="action__btn" aria-label="Quick View">
-                  <i class="fi fi-rs-eye"></i>
-                </a>
-                <a
-                  href="#"
-                  class="action__btn"
-                  aria-label="Add to Wishlist"
-                >
-                  <i class="fi fi-rs-heart"></i>
-                </a>
-                <a href="#" class="action__btn" aria-label="Compare">
-                  <i class="fi fi-rs-shuffle"></i>
-                </a>
-              </div>
-              <div class="product__badge light-green">Hot</div>
-            </div>
-            <div class="product__content">
-              <span class="product__category">Clothing</span>
-              <a href="details.html">
-                <h3 class="product__title">Colorful Pattern Shirts</h3>
-              </a>
-              <div class="product__rating">
-                <i class="fi fi-rs-star"></i>
-                <i class="fi fi-rs-star"></i>
-                <i class="fi fi-rs-star"></i>
-                <i class="fi fi-rs-star"></i>
-                <i class="fi fi-rs-star"></i>
-              </div>
-              <div class="product__price flex">
-                <span class="new__price">$238.85</span>
-                <span class="old__price">$245.8</span>
-              </div>
-              <a
-                href="#"
-                class="action__btn cart__btn"
-                aria-label="Add To Cart"
-              >
-                <i class="fi fi-rs-shopping-bag-add"></i>
-              </a>
-            </div>
-          </div>
-          <div class="product__item">
-            <div class="product__banner">
-              <a href="details.html" class="product__images">
-                <img
-                  src="{% static 'assets/img/product-3-1.jpg' %}"
-                  alt=""
-                  class="product__img default"
-                />
-                <img
-                  src="{% static 'assets/img/product-3-2.jpg' %}"
-                  alt=""
-                  class="product__img hover"
-                />
-              </a>
-              <div class="product__actions">
-                <a href="#" class="action__btn" aria-label="Quick View">
-                  <i class="fi fi-rs-eye"></i>
-                </a>
-                <a
-                  href="#"
-                  class="action__btn"
-                  aria-label="Add to Wishlist"
-                >
-                  <i class="fi fi-rs-heart"></i>
-                </a>
-                <a href="#" class="action__btn" aria-label="Compare">
-                  <i class="fi fi-rs-shuffle"></i>
-                </a>
-              </div>
-              <div class="product__badge light-orange">Hot</div>
-            </div>
-            <div class="product__content">
-              <span class="product__category">Clothing</span>
-              <a href="details.html">
-                <h3 class="product__title">Colorful Pattern Shirts</h3>
-              </a>
-              <div class="product__rating">
-                <i class="fi fi-rs-star"></i>
-                <i class="fi fi-rs-star"></i>
-                <i class="fi fi-rs-star"></i>
-                <i class="fi fi-rs-star"></i>
-                <i class="fi fi-rs-star"></i>
-              </div>
-              <div class="product__price flex">
-                <span class="new__price">$238.85</span>
-                <span class="old__price">$245.8</span>
-              </div>
-              <a
-                href="#"
-                class="action__btn cart__btn"
-                aria-label="Add To Cart"
-              >
-                <i class="fi fi-rs-shopping-bag-add"></i>
-              </a>
-            </div>
-          </div>
-          <div class="product__item">
-            <div class="product__banner">
-              <a href="details.html" class="product__images">
-                <img
-                  src="{% static 'assets/img/product-4-1.jpg' %}"
-                  alt=""
-                  class="product__img default"
-                />
-                <img
-                  src="{% static 'assets/img/product-4-2.jpg' %}"
-                  alt=""
-                  class="product__img hover"
-                />
-              </a>
-              <div class="product__actions">
-                <a href="#" class="action__btn" aria-label="Quick View">
-                  <i class="fi fi-rs-eye"></i>
-                </a>
-                <a
-                  href="#"
-                  class="action__btn"
-                  aria-label="Add to Wishlist"
-                >
-                  <i class="fi fi-rs-heart"></i>
-                </a>
-                <a href="#" class="action__btn" aria-label="Compare">
-                  <i class="fi fi-rs-shuffle"></i>
-                </a>
-              </div>
-              <div class="product__badge light-blue">Hot</div>
-            </div>
-            <div class="product__content">
-              <span class="product__category">Clothing</span>
-              <a href="details.html">
-                <h3 class="product__title">Colorful Pattern Shirts</h3>
-              </a>
-              <div class="product__rating">
-                <i class="fi fi-rs-star"></i>
-                <i class="fi fi-rs-star"></i>
-                <i class="fi fi-rs-star"></i>
-                <i class="fi fi-rs-star"></i>
-                <i class="fi fi-rs-star"></i>
-              </div>
-              <div class="product__price flex">
-                <span class="new__price">$238.85</span>
-                <span class="old__price">$245.8</span>
-              </div>
-              <a
-                href="#"
-                class="action__btn cart__btn"
-                aria-label="Add To Cart"
-              >
-                <i class="fi fi-rs-shopping-bag-add"></i>
-              </a>
-            </div>
-          </div>
+          {% endfor %}
         </div>
-    </section>
+          
+      
+      <ul class="pagination">
+          <ul class="pagination">
+              <ul class="pagination">
+                {% if products.has_previous %}
+                  <li><a href="?page={{ products.previous_page_number }}" class="pagination__link"><</a></li>
+                {% endif %}
+                {% for page in products.paginator.page_range %}
+                    <li><a href="?page={{ page}}" class="pagination__link  {% if products.number == page %}active{% endif %}">{{page}}</a></li>
+                {% endfor %}
+                {% if products.has_next %}
+                  <li><a href="?page={{ products.next_page_number }}" class="pagination__link" blank>></a></li>
+                {% endif %}
+              </ul>
+
+          </ul>
+      </ul>
+  </section>
+
+
+<script>
+    document.addEventListener("click", async (e) => {
+      if (e.target.classList.contains("cart__btn")) {
+        e.preventDefault();
+        const button = e.target;
+        const productId = button.dataset.id;
+        const url = `/cart/${productId}/`;
+
+        try {
+          const response = await fetch(url, {
+            method: "GET",
+            headers: {
+              "X-CSRFToken": getCookie("csrftoken"),
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ quantity: 1 })
+          });
+
+          if (response.ok) {
+            button.textContent = "Added ✓";
+            button.disabled = true;
+          }
+        } catch (error) {
+          console.error("Tarmoq xatosi:", error);
+        }
+      }
+    });
+
+    function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== "") {
+        const cookies = document.cookie.split(";");
+        for (let cookie of cookies) {
+          cookie = cookie.trim();
+          if (cookie.startsWith(name + "=")) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+</script>

@@ -7,7 +7,6 @@ from django.core.paginator import Paginator
 from shop.forms import LoginForm, RegisterForm
 
 
-
 def product_with_category(request, category_id):
 
     products = Product.objects.filter(category_id=category_id)

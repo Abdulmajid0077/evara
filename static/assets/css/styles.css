@@ -675,6 +675,14 @@ table {
   font-size: var(--large-font-size);
 }
 
+.product__img {
+  width: 100%;
+  height: 250px; /* yoki sizga kerakli o‘lcham */
+  object-fit: cover; /* rasmni qirqadi, lekin shaklni buzmaydi */
+  border-radius: 10px;
+}
+
+
 .cart__btn {
   position: absolute;
   bottom: 1.6rem;
