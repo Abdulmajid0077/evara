@@ -80,46 +80,59 @@
   </section>
 
 
+
 <script>
-    document.addEventListener("click", async (e) => {
-      if (e.target.classList.contains("cart__btn")) {
-        e.preventDefault();
-        const button = e.target;
-        const productId = button.dataset.id;
-        const url = `/cart/${productId}/`;
+document.addEventListener("DOMContentLoaded", function () {
+  // Barcha "Add to Cart" tugmalarini tanlab olamiz
+  const cartButtons = document.querySelectorAll(".cart__btn");
 
-        try {
-          const response = await fetch(url, {
-            method: "GET",
-            headers: {
-              "X-CSRFToken": getCookie("csrftoken"),
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ quantity: 1 })
-          });
+  cartButtons.forEach((button) => {
+    button.addEventListener("click", async (e) => {
+      e.preventDefault();
 
-          if (response.ok) {
-            button.textContent = "Added ✓";
-            button.disabled = true;
-          }
-        } catch (error) {
-          console.error("Tarmoq xatosi:", error);
+      const productId = button.dataset.productId; // id olish
+      const url = `/cart/${productId}/`; // so‘rov manzili
+
+      try {
+        const response = await fetch(url, {
+          method: "GET",
+          headers: {
+            "X-Requested-With": "XMLHttpRequest",
+            "X-CSRFToken": getCookie("csrftoken"),
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log("✅ Mahsulot savatchaga qo‘shildi:", data);
+          // Masalan, savatcha sonini yangilash:
+          const cartCount = document.querySelector("#cart-count");
+          if (cartCount) cartCount.textContent = data.cart_count;
+        } else {
+          console.error("❌ Xato:", response.status);
         }
+      } catch (error) {
+        console.error("⚠️ Fetch xatosi:", error);
       }
     });
+  });
 
-    function getCookie(name) {
-      let cookieValue = null;
-      if (document.cookie && document.cookie !== "") {
-        const cookies = document.cookie.split(";");
-        for (let cookie of cookies) {
-          cookie = cookie.trim();
-          if (cookie.startsWith(name + "=")) {
-            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-            break;
-          }
+  // Django CSRF tokenni olish funksiyasi
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== "") {
+      const cookies = document.cookie.split(";");
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.substring(0, name.length + 1) === name + "=") {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
         }
       }
-      return cookieValue;
     }
+    return cookieValue;
+  }
+});
 </script>
+
+

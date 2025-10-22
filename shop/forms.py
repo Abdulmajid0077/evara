@@ -1,6 +1,6 @@
 from django import forms
 import re
-from .views import User
+from django.contrib.auth.models import User
 
 class LoginForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={"class": "form__input"}))

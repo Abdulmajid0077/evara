@@ -24,15 +24,16 @@ class Cart:
 
         self.session.modified = True
 
+    def get_count(self):
+        return len(self.cart.keys())
+
 
 def add_to_cart(request, product_id):
     cart = Cart(request)
 
     if Product.objects.filter(id=product_id).exists():
-        pass
-    if request.method == "POST":
-        # Bu yerda mahsulotni foydalanuvchi savatiga qo‘shasiz
-        return JsonResponse({"message": "Added successfully"})
-    return JsonResponse({"error": "Invalid request"}, status=400)
+        cart.add(product_id)
+   
+    return JsonResponse({"message": "Mahsulot qoshildi", "cart_count": cart.get_count()})
 
     
